@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "limits": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp",
+        "system_error": "cpp",
+        "xtr1common": "cpp",
+        "iostream": "cpp",
+        "algorithm": "cpp"
+    }
+}
