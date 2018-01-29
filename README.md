@@ -1,4 +1,4 @@
-# leetcode
+# leetcode solutions
 1 add some easy leetcode problems solved by myself.
 
 
