@@ -15,50 +15,34 @@ class Solution{
         if(B == NULL) return A;
 
         ListNode* pHead = NULL;
-        ListNode* pMovingHead =NULL;
-        ListNode* pMovingHeadA =NULL;
-        ListNode* pMovingHeadB =NULL;
+        ListNode* pMovingHeadA =A;
+        ListNode* pMovingHeadB =B;
 
-        if(A->val < B->val){
-            pHead= A;
-            pMovingHead =A;
-            pMovingHeadA = A->next;
-            pMovingHeadB = B;
+        if(pMovingHeadA->val <= pMovingHeadB->val){
+            pHead = pMovingHeadA;
+            pMovingHeadA= pMovingHeadA->next;
         } 
         else {
-            pHead=B;
-            pMovingHead =B;
-            pMovingHeadA = A;
-            pMovingHeadB = B->next;
+            pHead = pMovingHeadB;
+            pMovingHeadB = pMovingHeadB->next;
+            
         }
-        while(pMovingHeadA || pMovingHeadB){
-
-            if(pMovingHeadB==NULL && pMovingHeadA){
+        ListNode* pMovingHead = pHead;
+        while(pMovingHeadA && pMovingHeadB){
+            if(pMovingHeadA->val < pMovingHeadB->val){
                 pMovingHead->next = pMovingHeadA;
                 pMovingHead = pMovingHeadA;
                 pMovingHeadA = pMovingHead->next;
-            }
-            else if(pMovingHeadA==NULL && pMovingHeadB ){
+            } 
+            else {
                 pMovingHead->next = pMovingHeadB;
                 pMovingHead = pMovingHeadB;
                 pMovingHeadB = pMovingHead->next;
             }
-            else if( pMovingHeadB&&pMovingHeadA ){
-                if(pMovingHeadA->val < pMovingHeadB->val){
-                    pMovingHead->next = pMovingHeadA;
-                    pMovingHead = pMovingHeadA;
-                    pMovingHeadA = pMovingHead->next;
-                } 
-                else {
-                    pMovingHead->next = pMovingHeadB;
-                    pMovingHead = pMovingHeadB;
-                    pMovingHeadB = pMovingHead->next;
-                }
-            }
-
-
         }
-        
+        if(pMovingHeadA==NULL) pMovingHead->next = pMovingHeadB;
+        else pMovingHead->next = pMovingHeadA;
+         
         return pHead;
 
     };
