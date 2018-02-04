@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 using namespace std;
+ //O(m+n) KMP pattern matching
 class Solution{
     public:
 	vector<int> Prefix(string str) {
@@ -27,9 +28,7 @@ class Solution{
 
 	int strStr(string str, string pattern) {
 		if (pattern.empty() || str.empty()) return -1;
-
 		vector<int> prefix = Prefix(pattern);
-
 		int j = 0;
 		int i = 0;
 		while (i < str.size() && j< pattern.size() ) {
@@ -43,7 +42,6 @@ class Solution{
                 i++;
             }
 		}
-		
 		return j == pattern.size() ? i - j: -1;
 
 	};
