@@ -12,6 +12,7 @@
         "xtr1common": "cpp",
         "iostream": "cpp",
         "algorithm": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "queue": "cpp"
     }
 }
