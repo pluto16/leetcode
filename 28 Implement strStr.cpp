@@ -1,5 +1,5 @@
 
-
+#include <vector>
 #include <string>
 using namespace std;
 class Solution{
@@ -7,32 +7,20 @@ class Solution{
 	vector<int> Prefix(string str) {
 		vector<int> prefix(str.size(), 0);
 		int j = 0;
-		for (int i = 1; i < str.size(); ++i) {
+		int i = 1;
+		while(i < str.size()) {
 			if (str[j] == str[i]) {
 				prefix[i] = j + 1;
 				j++;
-				
+				i++;
+			}
+			else if(j>0) {
+				j = prefix[j - 1];
 			}
 			else {
-					j -= 1;
-					while (j >= 0) {
-						j = prefix[j];
-						if (str[j] == str[i])
-						{
-							prefix[i] = j + 1; break;
-						}
-						else {
-							j -= 1;
-						}
-					}
-					if (j < 0) {
-						prefix[i] = 0;
-						j = 0;
-					}	
+				prefix[i] = 0;
+				i++;
 			}
-			cout << "i=" << i << ",j=" << j <<", prefix[i]="<<prefix[i]<< endl;
-
-
 		}
 		return prefix;
 	};
@@ -43,31 +31,20 @@ class Solution{
 		vector<int> prefix = Prefix(pattern);
 
 		int j = 0;
-		for (int i = 0; i < str.size(); ++i) {
-			if (str[i] == pattern[j]) {
-				++j;
-			}
-			else {
-				j = prefix[j];
-				j -= 1;
-				while (j >= 0) {
-					if (str[i] == pattern[j])
-					{
-						++j; break;
-					}
-					else
-					{
-						j = prefix[j];
-						j -= 1;
-					}
-				}
-				if (j < 0) j = 0;
-			}
-			if (j == pattern.size()) return i-pattern.size()+1;
-
+		int i = 0;
+		while (i < str.size() && j< pattern.size() ) {
+            if (str[i] == pattern[j]) {
+                i++; j++;
+            }
+            else if (j > 0) {
+                j = prefix[j - 1];
+            }
+            else {
+                i++;
+            }
 		}
 		
-		return -1;
+		return j == pattern.size() ? i - j: -1;
 
 	};
 
